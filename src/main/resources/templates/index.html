@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clima app</title>
+</head>
+<body>
+    <h1>Clima app</h1>
+
+    <form th:action="@{/clima}" method="get">
+        <input type="text" name="ciudad" placeholder="Enter city name" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div th:if="${clima}">
+        <h2>Weather for <span th:text="${clima.ciudad}"></span></h2>
+        <p>Temperature: <span th:text="${clima.temperatura}"></span> &#8451;</p>
+    </div>
+</body>
+</html>
