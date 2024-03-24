@@ -2,18 +2,25 @@
 <html>
 <head>
     <title>Clima app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Clima app</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Clima app</h1>
 
-    <form th:action="@{/clima}" method="get">
-        <input type="text" name="ciudad" placeholder="Enter city name" required>
-        <button type="submit">Get Weather</button>
-    </form>
+        <form th:action="@{/clima}" method="get" class="text-center">
+            <input type="text" name="ciudad" class="form-control mb-3" placeholder="Enter city name" required>
+            <button type="submit" class="btn btn-primary btn-block">Get Weather</button>
+        </form>
 
-    <div th:if="${clima}">
-        <h2>Weather for <span th:text="${clima.ciudad}"></span></h2>
-        <p>Temperature: <span th:text="${clima.temperatura}"></span> &#8451;</p>
+        <div th:if="${clima}" class="mt-4 text-center">
+            <h2>Weather for <span th:text="${clima.ciudad}"></span></h2>
+            <p>Temperature: <span th:text="${clima.temperatura}"></span> &#8451;</p>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
