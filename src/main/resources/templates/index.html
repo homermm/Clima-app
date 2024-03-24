@@ -18,7 +18,7 @@
                 <tbody>
                     <tr th:each="clima : ${climas}">
                         <td th:text="${clima.ciudad}"></td>
-                        <td th:text="${clima.temperatura}"></td>
+                        <td th:text="${clima.temperatura} + ' °C'"></td>
                     </tr>
                 </tbody>
             </table>

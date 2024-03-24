@@ -17,10 +17,28 @@ public class ClimaController {
     public ClimaController(IClimaService climaService) {
         this.climaService = climaService;
     }
-    
+
+    @GetMapping("/")
+    public String showHomePage(Model model) {
+        //Climas mas buscados
+        List<Clima> listaClimas = new ArrayList<>();
+        listaClimas.add(climaService.getClima("Nueva York"));
+        listaClimas.add(climaService.getClima("Londres"));
+        listaClimas.add(climaService.getClima("Madrid"));
+        listaClimas.add(climaService.getClima("Tokyo"));
+
+        model.addAttribute("climas", listaClimas);
+
+        return ViewRouteHelper.CLIMA_INDEX;
+    }
+
     @GetMapping("/clima")
     public String getClima(@RequestParam(value = "ciudad", required = false) String ciudad, Model model) {
         if (ciudad != null && !ciudad.isEmpty()) {
+            //Clima del usuario
+            Clima clima = climaService.getClima(ciudad);
+            model.addAttribute("clima", clima);
+
             //Climas mas buscados
             List<Clima> listaClimas = new ArrayList<>();
             listaClimas.add(climaService.getClima("Nueva York"));
@@ -29,10 +47,6 @@ public class ClimaController {
             listaClimas.add(climaService.getClima("Tokyo"));
 
             model.addAttribute("climas", listaClimas);
-
-            //Busqueda del usuario
-            Clima clima = climaService.getClima(ciudad);
-            model.addAttribute("clima", clima);
         }
         return ViewRouteHelper.CLIMA_INDEX;
     }
